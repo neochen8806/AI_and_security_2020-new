@@ -1,0 +1,83 @@
+-----------------------------------
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Ch14_4_1.html</title>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+</head>
+<body>
+<script>
+const x = tf.scalar(10.5);
+document.write("張量x值: " + x + "<br/>");
+document.write("張量的屬性" + "<br/>");
+document.write("等級rank: " + x.rank + "<br/>");
+document.write("形狀shape: [" + x.shape + "]<br/>");
+document.write("資料型態(data type): " + x.dtype + "<br/>");
+document.write("----------------------------------------<br/>");
+const y = tf.scalar(10, "int32");
+document.write("張量y值: " + y + "<br/>");
+document.write("資料型態(data type): " + y.dtype + "<br/>");
+</script>
+</body>
+</html>
+------------------------------------
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Ch14_5_1.html</title>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@latest"></script>
+</head>
+<body>
+<script>
+async function run() { 
+  let celsius = [{x: 1, y: 25.6}, {x: 3, y: 23.2}, {x: 5, y: 18.5}, {x: 7, y: 28.3},
+                 {x: 9, y: 26.5}, {x: 11,y: 30.5}, {x:13, y: 32.6}, {x:15, y: 33.1}];
+  tfvis.render.linechart(
+    { name: '住家氣溫', tab: "折線圖" }, 
+    { values: [celsius], series: ['Home'] }, 
+    { xLabel: '日數', yLabel: '攝氏溫度', 
+      height: 300, width: 400 }
+  );
+}  
+run();
+</script>
+</body>
+</html>
+----------------------------------
+NUMPY ndarray(N-Dimensional Arrays)重要屬性:shape dimension
+軸 (axis) 與維度 (dimension)
+shape
+dtype 屬性
+---------------------------------
+import numpy as np
+ar2=np.array([[0,3,5],[2,8,7]])
+# ar2.shape
+ar2.ndim
+---------------------------------
+ndarray資料型態(dtype)與型態轉換(astype)
+ar=np.array([2,4,6,8]); 
+ar.dtype
+---------------------------------
+numpy.random.uniform 平均分布
+numpy.random.uniform介紹：
+
+1. 函數原型： numpy.random.uniform(low,high,size)
+
+功能：從一個均勻分佈[low,high)中隨機採樣，注意定義域是左閉右開，即包含low，不包含high.
+
+參數介紹:
+    
+    low: 採樣下界，float類型，默認值為0；
+    high: 採樣上界，float類型，默認值為1；
+    size: 輸出樣本數目，為int或元組(tuple)類型，例如，size=(m,n,k), 則輸出m*n*k個樣本，缺省時輸出1個值。
+
+返回值：ndarray類型，其形狀和參數size中描述一致。
+測試
+import numpy as np
+a = np.random.uniform(2,5,3)
+a
+結果
+array([2.84448263, 3.92726803, 2.12158167])
